@@ -1,0 +1,13 @@
+.quill-editor{
+  border: 1px solid #E4E7EB;
+  border-radius: 5px;
+  padding: 10px;
+  .ql-container{
+    border: none;
+    height: 200px;
+    background-color: #D1DAE5;
+    :focus{
+     background-color: aliceblue;
+    }
+  }
+}
