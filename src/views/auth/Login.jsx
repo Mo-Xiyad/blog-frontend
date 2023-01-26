@@ -25,11 +25,11 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
-
+  const apiUrl = process.env.REACT_APP_BE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/users/login", {
+      const response = await fetch(`${apiUrl}/users/login`, {
         method: "POST",
         body: JSON.stringify(loginData),
         headers: {
@@ -120,7 +120,7 @@ const Login = () => {
 
           <div className="flex items-center justify-center">
             <a
-              href="http://localhost:3001/users/googleLogin"
+              href={`${apiUrl}/users/googleLogin`}
               className="flex items-center border rounded-md p-4 border-secondary bg-secondary shadow-md"
             >
               <FcGoogle className="text-3xl" />
