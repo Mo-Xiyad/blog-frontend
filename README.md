@@ -1,15 +1,14 @@
-# Strive Blog Template
+# Codecast Blog
 
-## before Deploying to the cloud
+## To run this app on your local machine follow the following steps :
 
-- `npm i dotenv`
-- create .evn file and set '`REACT_APP_BE_URL = http://localhost:3001`' "`REACT_APP`" is a must while seting the variable
-- when fetching data from the API `const Url = process.env.REACT_APP_BE_URL;` use the variable as an endpoint
-- set all the keys in the `.env` file
+- Open the terminal and run `git clone`
+- `cd` into the folder and run `npm install`
 
-## To the Cloud
+- Create .env file and set the following variables:
 
-- `https://vercel.com/`
-- From the pletform where the app is being hosted set envirment varibales
-- If there is any errors while building the app set the E-Variable `CI` as `false`
-- project > settings > Environment Variable > NAME: `REACT_APP_BE_URL`: VALUE: in here as a value use the API urls (Url of the backend where it is from hosted) `https://${App-Name}.herokuapp.com`
+  > REACT_APP_BE_URL= "url of your backend it would look like http://localhost:3001""
+  > REACT_APP_STORE_ENCRYPT_KEY= "Anything you want here but keep it secret"
+
+- Make sure your backend is running
+- run `npm start` to start the app
