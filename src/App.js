@@ -60,7 +60,7 @@ function App(props) {
 
   return (
     <div className="w-screen h-screen bg-secondary dark:bg-gray-900">
-      <NavBar />
+      {isLoggedIn ? <NavBar /> : null}
       <Routes>
         <Route path="/" exact element={<Home {...props} />} />
         <Route path="/login" exact element={<Login {...props} />} />
