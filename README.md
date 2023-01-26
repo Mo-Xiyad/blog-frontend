@@ -11,4 +11,4 @@
   > REACT_APP_STORE_ENCRYPT_KEY= "Anything you want here but keep it secret"
 
 - Make sure your backend is running
-- run `npm start` to start the app
+- run `npm run start` to start the app
