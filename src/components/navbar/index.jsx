@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { AiOutlineLogout } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.webp";
@@ -19,92 +20,69 @@ const NavBar = (props) => {
     }
   };
 
-  const apiUrl = process.env.REACT_APP_BE_URL;
-  const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="mx-auto flex p-4 fixed top-0 left-0 right-0 z-10 items-center justify-between backdrop-blur-sm bg-white/30 px-5 py-3">
-      <Link
-        to="/"
-        className="inline-flex items-center justify-center flex-shrink-0 text-primary mr-6"
-      >
-        <img className="fill-current h-10 w-10 mr-2" alt="logo" src={logo} />
-        <span className="font-semibold text-xl tracking-tight">CodeCast</span>
-      </Link>
-      {/*  */}
-      <div className="full flex-grow flex lg:items-center lg:w-auto justify-start md:hidden">
-        <button
-          className="text-primary focus:outline-none "
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M4 5h16M4 12h16M4 19h16"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-        <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } nav-links ml-4 text-base font-medium`}
-        >
-          <ul className="relative z-10 list-none rounded-md backdrop-blur-sm bg-white/30 shadow-md">
-            <li className="py-2 px-4">
-              <Link
-                to="/update_user"
-                className="block text-primary hover:text-tertiary"
+    <>
+      {isLoggedIn ? (
+        <div className="navbar backdrop-blur-sm bg-white/30 flex fixed top-0 left-0 right-0 z-10">
+          <div className="navbar-start md:hidden">
+            <div className="dropdown">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-circle text-primary border-none hover:rounded-full hover:bg-gray-500  hover:text-white"
               >
-                profile
-              </Link>
-            </li>
-            <li className="py-2 px-4">
-              <Link className="block text-primary hover:text-tertiary">
-                Topics
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="w-full  flex-grow flex lg:items-center lg:w-auto justify-end">
-        <div className="text-sm lg:flex-grow">
-          <Link
-            to="/update_user"
-            className="md:inline-block hidden lg:mt-0 text-primary hover:text-white mr-4"
-          >
-            update profile
-          </Link>
-          <Link
-            // href={}
-            className="md:inline-block hidden lg:mt-0 text-primary hover:text-white mr-4"
-          >
-            Topics
-          </Link>
-          <Link
-            to={"/new"}
-            // to={`${apiUrl}/posts/downloadCSV-authos`}
-            className="inline-block lg:hidden lg:mt-0 text-white bg-tertiary hover:bg-white hover:text-primary border-2  rounded px-2 py-1"
-          >
-            Create post
-          </Link>
-          <Link
-            onClick={() => {
-              dispatch(checkLoggedInUser(false));
-              logOut();
-            }}
-            className="inline-block lg:hidden lg:mt-0 text-white bg-tertiary hover:bg-white hover:text-primary border-2  rounded px-2 py-1"
-          >
-            Log out
-          </Link>
-        </div>
-        {isLoggedIn ? (
-          <div className=" items-center gap-2 text-sm hidden lg:block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h7"
+                  />
+                </svg>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to={"/new"}>Create post</Link>
+                </li>
+                <li>
+                  <Link to="/update_user">Update profile</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="navbar-center md:navbar-start">
             <Link
+              to="/"
+              className="btn btn-ghost normal-case inline-flex items-center justify-center flex-shrink-0 text-primary mr-6"
+            >
+              <img
+                className="fill-current h-10 w-10 mr-2"
+                alt="logo"
+                src={logo}
+              />
+              <span className="font-semibold text-xl tracking-tight">
+                CodeCast
+              </span>
+            </Link>
+          </div>
+          <div className="navbar-end">
+            <Link
+              className="hidden md:inline py-1 px-4 text-primary border-none hover:bg-gray-500  hover:text-primary rounded"
               to={"/new"}
-              // to={`${apiUrl}/posts/downloadCSV-authos`}
-              className="text-sm px-4 mr-4 py-2 leading-none border rounded text-white border-spacing-0 bg-tertiary hover:border-transparent hover:text-primary hover:bg-white mt-4 lg:mt-0"
+            >
+              Update profile
+            </Link>
+            <Link
+              className="hidden md:inline py-1 px-4 text-primary border-none hover:bg-gray-500  hover:text-primary rounded"
+              to={"/new"}
             >
               Create post
             </Link>
@@ -113,14 +91,14 @@ const NavBar = (props) => {
                 dispatch(checkLoggedInUser(false));
                 logOut();
               }}
-              className=" text-sm px-4 py-2 leading-none border rounded text-white border-spacing-0 bg-tertiary hover:border-transparent hover:text-primary hover:bg-white mt-4 lg:mt-0"
+              className="inline-block text-primary border-none hover:rounded-full p-4 hover:bg-gray-500  hover:text-white rounded"
             >
-              Log out
+              <AiOutlineLogout />
             </Link>
           </div>
-        ) : null}
-      </div>
-    </nav>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default NavBar;

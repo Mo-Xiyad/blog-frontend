@@ -51,7 +51,7 @@ function UpdateUserInfo() {
             Name
           </label>
           <input
-            className="border border-gray-400 p-2 rounded-lg w-full"
+            className="border bg-white border-gray-400 p-2 rounded-lg w-full"
             type="text"
             id="name"
             name="name"

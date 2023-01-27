@@ -7,7 +7,7 @@ import login from "../../assets/login.webp";
 import TextInputField from "../../components/shared/TextInputField";
 import useAuthGuard from "../../hooks/useAuthGuard";
 import { checkLoggedInUser } from "../../redux/actions";
-import "./styles.css";
+
 const SignUp = () => {
   const { isAuthenticated, isLoading } = useAuthGuard();
   const navigate = useNavigate();

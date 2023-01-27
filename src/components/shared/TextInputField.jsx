@@ -23,7 +23,7 @@ export default function TextInputField({
         type={type}
         autoComplete={autoComplete}
         required={required}
-        className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-primary focus:outline-none sm:text-sm"
+        className="w-full rounded-md border bg-white border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-primary focus:outline-none sm:text-sm"
         placeholder={placeholder}
         value={value}
         onChange={onChange}

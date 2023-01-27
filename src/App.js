@@ -8,6 +8,7 @@ import Blog from "./views/blog/index";
 import NewBlogPost from "./views/new_post/index";
 
 import { LOGGED_IN_USERS_DATA } from "./redux/actions";
+import ErrorBoundary from "./views/auth/ErrorBoundary";
 import Login from "./views/auth/Login";
 import SignUp from "./views/auth/Signup";
 import Home from "./views/home";
@@ -59,16 +60,32 @@ function App(props) {
   }, [__userTokens]);
 
   return (
-    <div className="w-screen h-screen bg-secondary dark:bg-gray-900">
-      {isLoggedIn ? <NavBar /> : null}
-      <Routes>
-        <Route path="/" exact element={<Home {...props} />} />
-        <Route path="/login" exact element={<Login {...props} />} />
-        <Route path="/signup" exact element={<SignUp />} />
-        <Route path="/posts/:_id" exact element={<Blog />} />
-        <Route path="/new" exact element={<NewBlogPost />} />
-        <Route path="/update_user" exact element={<UpdateUserInfo />} />
-      </Routes>
+    <ErrorBoundary>
+      <div className="w-screen h-screen bg-secondary dark:bg-gray-900">
+        <NavBar />
+        <Routes>
+          <Route path="/" exact element={<Home {...props} />} />
+          <Route path="/login" exact element={<Login {...props} />} />
+          <Route path="/signup" exact element={<SignUp />} />
+          <Route path="/posts/:_id" exact element={<Blog />} />
+          <Route path="/new" exact element={<NewBlogPost />} />
+          <Route path="/update_user" exact element={<UpdateUserInfo />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </div>
+    </ErrorBoundary>
+  );
+}
+function PageNotFound() {
+  return (
+    <div className="flex items-center h-screen justify-center text-center">
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h1 className="text-4xl font-medium text-gray-800">404</h1>
+        <p className="text-xl font-light text-gray-600">Page Not Found</p>
+        <p className="text-sm font-light text-gray-500">
+          The page you are looking for does not exist.
+        </p>
+      </div>
     </div>
   );
 }
